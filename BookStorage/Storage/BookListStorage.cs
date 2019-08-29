@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 using BookStorage.Interfaces;
 using BookStorage.Models;
 
-
 namespace BookStorage.Storage
 {
-    class BookListStorage : IStorage<Book>
+    internal class BookListStorage : IStorage<Book>
     {
         private readonly string path;
 
@@ -22,8 +21,7 @@ namespace BookStorage.Storage
             }
 
             this.path = path;
-        }
-        
+        }    
 
         public List<Book> Read()
         {
@@ -50,6 +48,7 @@ namespace BookStorage.Storage
                 }
             }
         }
+
         public void AppendToFile(Book book)
         {
             using (var bw = new BinaryWriter(File.Open(path, FileMode.Append, FileAccess.Write, FileShare.None)))
@@ -57,8 +56,6 @@ namespace BookStorage.Storage
                 Writer(bw, book);
             }
         }
-
-
 
         private static void Writer(BinaryWriter binary, Book book)
         {
