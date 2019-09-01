@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookStorage.Models
 {
-    internal class Book : IEquatable<Book>, IComparable, IComparable<Book>, IFormattable
+    public class Book : IEquatable<Book>, IComparable, IComparable<Book>, IFormattable
     {
         /// <summary>
         /// Constructor
@@ -135,7 +135,7 @@ namespace BookStorage.Models
                 case "3": return "Book: " + Name + " Author: " + Author + " y. " + YearOfPublish + " ISBN: " + ISBN;
                 case "4": return "Book: " + Name + " Author: " + YearOfPublish + " y. " + CountOfPages + " p. " + Author + " ISBN: " + ISBN;
                 case "5": return "Book: " + Name + " Author: " + YearOfPublish + " y. " + CountOfPages + " p. " + Author + " ISBN: " + ISBN + " Publishing House : " + PublishingHouse;
-                case "6": return "Book: " + Name + " Author: " + YearOfPublish + " y. " + CountOfPages + " p. " + Author + " ISBN: " + ISBN + " Publishing House : " + PublishingHouse + Price + " y.e ";
+                case "6": return "Book: " + Name + " Author: " + YearOfPublish + " y. " + CountOfPages + " p. " + Author + " ISBN: " + ISBN + " Publishing House : " + PublishingHouse + " " + Price + " y.e ";
                 default: throw new FormatException(string.Format("The {0} format string is not supported.", format));
             }
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookStorage.Models
 {
-    internal class BookFormatter : IFormatProvider, ICustomFormatter
+    public class BookFormatter : IFormatProvider, ICustomFormatter
     {
         public object GetFormat(Type formatType)
         {
@@ -23,6 +23,15 @@ namespace BookStorage.Models
 
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
+            if (format == null)
+                try
+                {
+                    return HandleOtherFormats(format, arg);
+                }
+                catch (FormatException e)
+                {
+                    throw new FormatException(String.Format("The format of '{0}' is invalid.", format), e);
+                }
             format = format.ToLower();
 
             Book book = (Book)arg;
@@ -38,7 +47,7 @@ namespace BookStorage.Models
                 case "isbn":
                     return "Book: " + book.Name + " Author: " + book.Author + " ISBN: " + book.ISBN;
                 case "price":
-                    return "Book: " + book.Name + " Author: " + book.Author + book.Price + " y.e ";
+                    return "Book: " + book.Name + " Author: " + book.Author + " " + book.Price + " y.e ";
                 default:
                     try
                     {

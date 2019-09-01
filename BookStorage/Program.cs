@@ -11,6 +11,27 @@ namespace BookStorage
     {
         private static void Main(string[] args)
         {
+            Book bookForTest = new Book("978-0-141-34844-5", "Rebecca Donovan", "reason to breathe", "Pinguin Books", 2012, 531, 8);
+            IFormatProvider formatProvider = new BookFormatter();
+
+            Console.WriteLine(String.Format(new BookFormatter(), "{0:all}", bookForTest));
+            Console.WriteLine(String.Format(new BookFormatter(), "{0:nameauthor}", bookForTest));
+            Console.WriteLine(String.Format(new BookFormatter(), "{0:nameauthoryearpages}", bookForTest));
+            Console.WriteLine(String.Format(new BookFormatter(), "{0:isbn}", bookForTest));
+            Console.WriteLine(String.Format(new BookFormatter(), "{0:price}", bookForTest));
+            Console.WriteLine(String.Format(new BookFormatter(), "{0}", bookForTest));
+
+            //Console.WriteLine(bookForTest.ToString("2", ));
+            //Console.WriteLine(bookForTest.ToString("3", ));
+            //Console.WriteLine(bookForTest.ToString("4", ));
+            //Console.WriteLine(bookForTest.ToString("5",  ));
+            //Console.WriteLine(bookForTest.ToString("6", ));
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("______________________________________________________________________");
+
             IStorage<Book> storage = new BookListStorage("test.bin");
             IService service = new BookListService(storage);
 
